@@ -1,6 +1,6 @@
 import './App.css';
 import Articles from "./components/article/view/Articles";
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {HashRouter, Route, Routes} from 'react-router-dom';
 import CreateArticle from "./components/article/add/CreateArticle";
 import Article from "./components/article/view/Article";
 import Login from "./components/Login";
@@ -29,7 +29,7 @@ function App() {
 
     return (
         <div className="App pt-24" >
-            <BrowserRouter>
+            <HashRouter>
                 <NavBar className="navbar"/>
                     <div className="main-content">
                         <AuthProvider store={store}>
@@ -84,7 +84,7 @@ function App() {
                             </Routes>
                         </AuthProvider>
                     </div>
-            </BrowserRouter>
+            </HashRouter>
         </div>
 );
 
