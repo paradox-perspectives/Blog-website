@@ -1,0 +1,56 @@
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99999; /* Ensure it's above other content */
+}
+
+.main-content {
+  position: relative; /* Ensure it's positioned relative to the viewport */
+  z-index: 1; /* Lower than navbar to keep it underneath */
+  padding-top: 60px; /* Adjust this value to match your navbar's actual height */
+  height: calc(100vh - 96px); /* Adjust this value to ensure content fits below the navbar */
+  overflow-y: auto; /* Adds scroll to the content area */
+}
+
