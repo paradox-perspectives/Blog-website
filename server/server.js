@@ -5,6 +5,7 @@ const articleRoutes = require('./articleRoutes');
 const userRoutes = require('./userRoutes');
 const cloudinaryRoutes = require('./cloudinaryRoutes');
 const themeRoutes = require('./themesRoutes');
+const mailRoutes = require('./mailRoute');
 
 const cors = require('cors');
 
@@ -35,6 +36,7 @@ app.use('/articles', articleRoutes);
 app.use('/users', userRoutes);
 app.use('/upload', cloudinaryRoutes);
 app.use('/themes', themeRoutes);
+app.use('/mail', mailRoutes);
 
 function ensureAuthor(req, res, next) {
     if (req.isAuthenticated() && req.user.role === 'Author') {

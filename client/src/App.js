@@ -14,6 +14,7 @@ import NavBar2  from './components/Nav2';
 import EditArticles from "./components/secure/EditArticles";
 import Publish from "./components/secure/Publish";
 import ViewArticles from "./components/secure/ViewArticles";
+import EmailsView from "./components/secure/EmailsView";
 import ContactPage from "./components/ContactPage";
 import ComingSoonPage from "./components/ComingSoonPage";
 import ArticleAdded from "./components/article/add/ArticleAdded";
@@ -78,6 +79,11 @@ function App() {
                                 <Route path="/view" element={
                                     <RequireAuth fallbackPath="/login">
                                         <ViewArticles/>
+                                    </RequireAuth>
+                                }/>
+                                <Route path="/emails" element={
+                                    <RequireAuth fallbackPath="/login">
+                                        <EmailsView/>
                                     </RequireAuth>
                                 }/>
                                 <Route path="*" element={<NotFound/>}/>

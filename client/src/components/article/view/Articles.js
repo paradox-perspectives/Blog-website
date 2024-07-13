@@ -88,7 +88,9 @@ function Articles() {
                         onChange={handleChange}
                         options={themes}
                     />
-                    <img alt="buy me a coffee" src={bmc} />
+                    <a href="https://buymeacoffee.com/romeovhl">
+                        <img alt="buy me a coffee" src={bmc}/>
+                    </a>
                 </Space>
             </div>
         </div>

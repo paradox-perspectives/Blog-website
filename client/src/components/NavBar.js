@@ -27,15 +27,15 @@ function Nav() {
                                     </a>
 
                                     <a
-                                        href="/shop"
-                                        className={`hover:bg-[#C492B1] px-3 py-2 rounded-md text-lg font-medium ${location.pathname === '/shop' ? 'text-white' : 'text-gray-300'}`}
+                                        href="/#shop"
+                                        className={`hover:bg-[#C492B1] px-3 py-2 rounded-md text-lg font-medium ${location.pathname === '/#shop' ? 'text-white' : 'text-gray-300'}`}
                                     >
                                         Shop
                                     </a>
 
                                     <a
-                                        href="/contact"
-                                        className={`hover:bg-[#C492B1] px-3 py-2 rounded-md text-lg font-medium ${location.pathname === '/contact' ? 'text-white' : 'text-gray-300'}`}
+                                        href="/#contact"
+                                        className={`hover:bg-[#C492B1] px-3 py-2 rounded-md text-lg font-medium ${location.pathname === '/#contact' ? 'text-white' : 'text-gray-300'}`}
                                     >
                                         Contact
                                     </a>
@@ -108,15 +108,15 @@ function Nav() {
                                 </a>
 
                                 <a
-                                    href="/shop"
-                                    className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/shop' ? 'text-white' : 'text-gray-300'}`}
+                                    href="/#shop"
+                                    className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/#shop' ? 'text-white' : 'text-gray-300'}`}
                                 >
                                     Shop
                                 </a>
 
                                 <a
-                                    href="/client/src/components/ContactPage"
-                                    className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/contact' ? 'text-white' : 'text-gray-300'}`}
+                                    href="/#contact"
+                                    className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/#contact' ? 'text-white' : 'text-gray-300'}`}
                                 >
                                     Contact
                                 </a>

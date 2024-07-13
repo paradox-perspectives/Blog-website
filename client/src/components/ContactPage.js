@@ -3,6 +3,8 @@ import emailjs from '@emailjs/browser';
 import { Form, Input, Button, message, Space } from 'antd';
 import { InstagramOutlined } from '@ant-design/icons';
 import bmc from "../bmc-button.png";
+import insta from "../Insta.png";
+
 
 const ContactPage = () => {
     const formRef = useRef();
@@ -93,9 +95,11 @@ const ContactPage = () => {
             </div>
             <div className="w-72 border-l-2 border-gray-300 pl-4 sticky top-0 text-right">
                 <a href="https://instagram.com/sovereign_truth?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer">
-                    <InstagramOutlined style={{ fontSize: '24px', color: '#000' }} />
+                    <img src={insta}/>
                 </a>
-                <img src={bmc} alt="Buy Me a Coffee" style={{ marginTop: '20px' }} />
+                <a href="https://buymeacoffee.com/romeovhl">
+                    <img src={bmc} alt="Buy Me a Coffee" style={{marginTop: '20px'}}/>
+                </a>
             </div>
         </div>
     );
