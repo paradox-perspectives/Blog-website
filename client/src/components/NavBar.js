@@ -31,10 +31,17 @@ function Nav() {
                                     </a>
 
                                     <a
-                                        href="/#shop"
+                                        href="/#horaires"
                                         className={`hover:bg-[#C492B1] px-3 py-2 rounded-md text-lg font-medium ${location.pathname === '/#shop' ? 'text-white' : 'text-gray-300'}`}
                                     >
-                                        Shop
+                                        Horaires
+                                    </a>
+
+                                    <a
+                                        href="/#tarifs"
+                                        className={`hover:bg-[#C492B1] px-3 py-2 rounded-md text-lg font-medium ${location.pathname === '/#shop' ? 'text-white' : 'text-gray-300'}`}
+                                    >
+                                        Tarifs
                                     </a>
 
                                     <a
@@ -113,11 +120,19 @@ function Nav() {
                             </a>
 
                             <a
-                                href="/#shop"
+                                href="/#horaires"
                                 className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/#shop' ? 'text-white' : 'text-gray-300'}`}
                                 onClick={handleLinkClick}
                             >
-                                Shop
+                                Horaires
+                            </a>
+
+                            <a
+                                href="/#tarifs"
+                                className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/#shop' ? 'text-white' : 'text-gray-300'}`}
+                                onClick={handleLinkClick}
+                            >
+                                Tarifs
                             </a>
 
                             <a

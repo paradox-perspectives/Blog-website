@@ -17,6 +17,8 @@ import EmailsView from "./components/secure/EmailsView";
 import ContactPage from "./components/ContactPage";
 import ComingSoonPage from "./components/ComingSoonPage";
 import ArticleAdded from "./components/article/add/ArticleAdded";
+import Timetable from "./components/TimeTable";
+import Prices from "./components/Prices";
 
 
 function App() {
@@ -39,6 +41,8 @@ function App() {
                                 <Route path="/articles/:urlId" element={<Article/>}/>
                                 <Route path="/contact" element={<ContactPage/>}/>
                                 <Route path="/shop" element={<ComingSoonPage/>}/>
+                                <Route path="/horaires" element={<Timetable/>}/>
+                                <Route path="/tarifs" element={<Prices/>}/>
 
                                 <Route path="/secure" element={
                                     <RequireAuth fallbackPath="/login">
