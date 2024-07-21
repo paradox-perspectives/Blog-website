@@ -31,7 +31,7 @@ function App() {
     return (
         <div className="App pt-24" >
             <HashRouter>
-                <NavBar className="navbar"/>
+                <NavBar className="navbar sm:mb-20 z-50"/>
                     <div className="main-content">
                         <AuthProvider store={store}>
                             <Routes>
