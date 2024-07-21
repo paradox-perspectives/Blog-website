@@ -1,15 +1,19 @@
-import React, {useRef, useState} from "react";
+import React, { useRef, useState } from "react";
 import { Transition } from "@headlessui/react";
-import {useLocation} from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import logo from '../logo.png';
-
 
 function Nav() {
     const [isOpen, setIsOpen] = useState(false);
     const ref = useRef();
     const location = useLocation();
+
+    const handleLinkClick = () => {
+        setIsOpen(false);
+    };
+
     return (
-        <div className="fixed top-0 nav-bar w-full">
+        <div className="fixed top-0 nav-bar w-full z-50">
             <nav className="bg-[#14608F]">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-24">
@@ -98,30 +102,33 @@ function Nav() {
                     leaveFrom="opacity-100 scale-100"
                     leaveTo="opacity-0 scale-95"
                 >
-                        <div className="md:hidden" id="mobile-menu">
-                            <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                                <a
-                                    href="/"
-                                    className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/' ? 'text-white' : 'text-gray-300'}`}
-                                >
-                                    Home
-                                </a>
+                    <div className="md:hidden" id="mobile-menu">
+                        <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                            <a
+                                href="/"
+                                className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/' ? 'text-white' : 'text-gray-300'}`}
+                                onClick={handleLinkClick}
+                            >
+                                Home
+                            </a>
 
-                                <a
-                                    href="/#shop"
-                                    className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/#shop' ? 'text-white' : 'text-gray-300'}`}
-                                >
-                                    Shop
-                                </a>
+                            <a
+                                href="/#shop"
+                                className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/#shop' ? 'text-white' : 'text-gray-300'}`}
+                                onClick={handleLinkClick}
+                            >
+                                Shop
+                            </a>
 
-                                <a
-                                    href="/#contact"
-                                    className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/#contact' ? 'text-white' : 'text-gray-300'}`}
-                                >
-                                    Contact
-                                </a>
-                            </div>
+                            <a
+                                href="/#contact"
+                                className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/#contact' ? 'text-white' : 'text-gray-300'}`}
+                                onClick={handleLinkClick}
+                            >
+                                Contact
+                            </a>
                         </div>
+                    </div>
                 </Transition>
             </nav>
         </div>

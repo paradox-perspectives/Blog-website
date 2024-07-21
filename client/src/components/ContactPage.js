@@ -33,8 +33,8 @@ const ContactPage = () => {
     };
 
     return (
-        <div className="flex justify-center items-start py-6 px-4 gap-8">
-            <div className="flex flex-col w-3/5">
+        <div className="flex-row md:flex justify-center items-start py-6 px-4 gap-8 relative z-1">
+            <div className="flex flex-col  w-full md:w-3/5">
                 <h1 className="text-2xl font-bold mb-4">Contact Us</h1>
                 <p>Want To Enquire More Information About How We Work?</p>
                 <p className="text-sm text-gray-600">Send us a message using any of the provided platforms underneath and start the conversation!</p>
@@ -93,8 +93,9 @@ const ContactPage = () => {
                     </Form.Item>
                 </Form>
             </div>
-            <div className="w-72 border-l-2 border-gray-300 pl-4 sticky top-0 text-right">
-                <a href="https://instagram.com/sovereign_truth?igshid=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer">
+            <br/>
+            <div className="w-72 md:border-l-2 border-gray-300 pl-4 sticky top-0 text-right">
+                <a href="https://www.instagram.com/paradox_perspectives_/" target="_blank" rel="noopener noreferrer">
                     <img src={insta}/>
                 </a>
                 <a href="https://buymeacoffee.com/romeovhl">

@@ -69,8 +69,8 @@ function Articles() {
 
 
     return (
-        <div className="flex justify-center items-start py-6 px-4 gap-8">
-            <div className="flex flex-col w-full max-w-2xl">
+        <div className="flex flex-col justify-center md:flex-row items-start py-6 px-4 gap-8">
+            <div className="flex flex-col w-full md:w-3/5 lg:w-3/5 max-w-2xl">
 
                 {articles.map((article, index) => (
                     <div className="mb-6" key={index}>
@@ -78,23 +78,24 @@ function Articles() {
                     </div>
                 ))}
             </div>
-            <div className="w-72 border-l-2 border-gray-300 pl-4 sticky top-0 text-right">
+            <div className="w-full md:w-72 md:border-l-2 border-gray-300 pl-4 md:sticky top-0 md:text-right order-first md:order-last mb-6 md:mb-0">
                 <Space direction={"vertical"} size={"middle"}>
-                    <Search key={searchKey} placeholder="input search text" onSearch={onSearch} style={{ width: 200 }} />
+                    <Search key={searchKey} placeholder="Search" onSearch={onSearch} style={{ width: 200 }} />
                     <Select
                         mode="multiple"
-                        style={{ width: '100%', textAlign: "left"}}
-                        placeholder="Select your topics of interest"
+                        style={{ width: 200, textAlign: "left"}}
+                        placeholder="Select topics"
                         onChange={handleChange}
                         options={themes}
                     />
                     <a href="https://buymeacoffee.com/romeovhl">
-                        <img alt="buy me a coffee" src={bmc}/>
+                        <img alt="buy me a coffee" className="block w-2/3 ml-auto mr-auto mt-10  md:ml-0 md:mr-0 md:w-auto md:mt-0" src={bmc}/>
                     </a>
                 </Space>
             </div>
         </div>
     );
+
 }
 
 export default Articles;

@@ -45,20 +45,34 @@ function Article({ hide = true }) {
 
     return (
         <div className="container mx-auto p-10">
-            <div className="p-4 w-2/3 content-center text-left">
+            <div className="p-4 w-full md:w-2/3  content-center text-left">
                 <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
                 <p className="text-gray-500 text-sm ">
                     {formatDate(article.createdAt)}
                 </p>
                 <br/>
                 <Space direction={"vertical"} size={"large"}>
-                    <img src={article.coverPhoto} alt="Cover" className="w-1/2 h-auto mx-auto"/>
+                    <img src={article.coverPhoto} alt="Cover" className="w-full md:w-3/5 lg:w-1/2 h-auto mx-auto"/>
 
                     {article?.pretext?.split('\n').map((alinea, index) => (
                         <div>
-                            <Paragraph key={index} className="mt-2 mx-4 text-gray-900 text-2xl font-cambria">
+                            <Paragraph
+                                key={index}
+                                className="
+                                mt-2
+                                mx-0
+                                sm:mx-0
+                                md:mx-4
+                                text-gray-900
+                                text-lg
+                                md:text-xl
+                                lg:text-2xl
+                                font-cambria
+                              "
+                            >
                                 {alinea}
                             </Paragraph>
+
                             <br/>
                         </div>
                     ))}
@@ -83,7 +97,7 @@ function Article({ hide = true }) {
                             case 'text':
                                 return ( content?.value?.split('\n').map((alinea, index) => (
                                     <div>
-                                        <Paragraph key={index} className="mt-2 w-2/3 text-gray-900 text-2xl text-left font-cambria">
+                                        <Paragraph key={index} className="mt-2 w-full md:w-2/3 text-gray-900 text-lg md:text-xl lg:text-2xl text-left font-cambria">
                                             {alinea}
                                         </Paragraph>
                                         <br/>
@@ -93,7 +107,7 @@ function Article({ hide = true }) {
                             case 'quote':
                                 return <div>
                                     <blockquote key={idx}
-                                                className="italic bg-gray-100 border-l-4 border-gray-500 pl-4 py-2 my-4 w-3/5 font-arial text-xl">
+                                                className="italic bg-gray-100 border-l-4 border-gray-500 pl-4 py-2 my-4 w-full md:w-3/5 font-arial text-lg md:text-xl">
                                         {content.value.split("--")[0]}
                                         <br/> {/* Break line for visual separation */}
                                         <span className="block text-right">- {content.value.split("--")[1]}</span>
@@ -101,7 +115,7 @@ function Article({ hide = true }) {
                                 </div>
 
                             case 'image':
-                                return <img alt="" className="w-2/5 h-auto mx-auto" src={content.value}/>
+                                return <img alt="" className="w-2/5 sm:w-4/5 md:w-3/5 h-auto mx-auto" src={content.value}/>
                             default:
                                 return null;
                         }

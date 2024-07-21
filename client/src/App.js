@@ -10,7 +10,6 @@ import AuthProvider from "react-auth-kit";
 import createStore from 'react-auth-kit/createStore';
 import NotFound from './components/NotFound';
 import NavBar  from './components/NavBar';
-import NavBar2  from './components/Nav2';
 import EditArticles from "./components/secure/EditArticles";
 import Publish from "./components/secure/Publish";
 import ViewArticles from "./components/secure/ViewArticles";
