@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import axios from "axios";
 import { Divider, Space, Typography } from 'antd';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+
 
 const { Title, Paragraph, Text } = Typography;
 
@@ -42,9 +44,27 @@ function Article({ hide = true }) {
         return <Navigate to="/not-found" replace />;
     }
 
+    const getImageClassName = (src) => {
+        const img = new Image();
+        img.src = src;
+
+        img.onload = () => {
+            const aspectRatio = img.width / img.height;
+            if (aspectRatio > 1.5) { // Wide image
+                return 'w-full md:w-4/5 lg:w-3/4';
+            } else { // Tall image or normal image
+                return  'w-full md:w-3/5 lg:w-1/2';
+            }
+        };
+
+        return "";
+    };
 
     return (
         <div className="container mx-auto p-10">
+            <Helmet>
+                <title>{`Oxy-vitale - ${article.title}`}</title>
+            </Helmet>
             <div className="p-4 w-full md:w-2/3  content-center text-left">
                 <h1 className="text-4xl font-bold mb-4">{article.title}</h1>
                 <p className="text-gray-500 text-sm ">
@@ -52,7 +72,7 @@ function Article({ hide = true }) {
                 </p>
                 <br/>
                 <Space direction={"vertical"} size={"large"}>
-                    <img src={article.coverPhoto} alt="Cover" className="w-full md:w-3/5 lg:w-1/2 h-auto mx-auto"/>
+                    <img src={article.coverPhoto} alt="Cover Picture" className={getImageClassName(article.coverPhoto)} />
 
                     {article?.pretext?.split('\n').map((alinea, index) => (
                         <div>
@@ -95,9 +115,10 @@ function Article({ hide = true }) {
                                 </div>
 
                             case 'text':
-                                return ( content?.value?.split('\n').map((alinea, index) => (
+                                return (content?.value?.split('\n').map((alinea, index) => (
                                     <div>
-                                        <Paragraph key={index} className="mt-2 w-full md:w-2/3 text-gray-900 text-lg md:text-xl lg:text-2xl text-left font-cambria">
+                                        <Paragraph key={index}
+                                                   className="mt-2 w-full md:w-2/3 text-gray-900 text-lg md:text-xl lg:text-2xl text-left font-cambria">
                                             {alinea}
                                         </Paragraph>
                                         <br/>
@@ -115,7 +136,11 @@ function Article({ hide = true }) {
                                 </div>
 
                             case 'image':
-                                return <img alt="" className="w-2/5 sm:w-4/5 md:w-3/5 h-auto mx-auto" src={content.value}/>
+                                return <img src={article.value} alt="Cover Picture"
+                                            className={getImageClassName(article.value)}/>
+                            case 'video':
+                                return <video controls alt="" className="w-2/5 sm:w-4/5 md:w-3/5 h-auto mx-auto"
+                                              src={content.value}/>
                             default:
                                 return null;
                         }

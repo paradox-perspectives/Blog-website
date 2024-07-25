@@ -3,8 +3,9 @@ import axios from 'axios';
 import ArticleCard from "./ArticleCard";
 import ArticleCard2 from "./ArticleCard2";
 import bmc from "../../../bmc-button.png";
-import { Select, Space } from 'antd';
+import { Select, Space, Button} from 'antd';
 import Search from "antd/es/input/Search";
+import {PhoneOutlined} from '@ant-design/icons';
 
 
 function Articles() {
@@ -47,7 +48,21 @@ function Articles() {
 
         axios.get(url)
             .then(response => {
-                const sortedArticles = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+                const sortedArticles = response.data.sort((a, b) => {
+                    if (a.theme === "Welcome" && b.theme !== "Welcome") {
+                        return -1;
+                    }
+                    if (a.theme !== "Welcome" && b.theme === "Welcome") {
+                        return 1;
+                    }
+                    if (a.theme === "Pinned" && b.theme !== "Pinned") {
+                        return -1;
+                    }
+                    if (a.theme !== "Pinned" && b.theme === "Pinned") {
+                        return 1;
+                    }
+                    return new Date(b.createdAt) - new Date(a.createdAt);
+                });
                 setArticles(sortedArticles);
             })
             .catch(error => {
@@ -88,8 +103,8 @@ function Articles() {
                         onChange={handleChange}
                         options={themes}
                     />
-                    <a href="https://buymeacoffee.com/romeovhl">
-                        <img alt="buy me a coffee" className="block w-2/3 ml-auto mr-auto mt-10  md:ml-0 md:mr-0 md:w-auto md:mt-0" src={bmc}/>
+                    <a href="/#contact">
+                        <Button type="primary" ghost={true}  size={"large"} shape="round" color={"blue"} icon={<PhoneOutlined />}>Contactez-nous</Button>
                     </a>
                 </Space>
             </div>

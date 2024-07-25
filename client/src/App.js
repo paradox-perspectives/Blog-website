@@ -19,6 +19,7 @@ import ComingSoonPage from "./components/ComingSoonPage";
 import ArticleAdded from "./components/article/add/ArticleAdded";
 import Timetable from "./components/TimeTable";
 import Prices from "./components/Prices";
+import HomePage from "./components/HomePage";
 
 
 function App() {
@@ -33,69 +34,69 @@ function App() {
         <div className="App pt-24" >
             <HashRouter>
                 <NavBar className="navbar sm:mb-20 z-50"/>
-                    <div className="main-content">
-                        <AuthProvider store={store}>
-                            <Routes>
-                                <Route path="/" element={<Articles/>}/>
-                                <Route path="/login" element={<Login/>}/>
-                                <Route path="/articles/:urlId" element={<Article/>}/>
-                                <Route path="/contact" element={<ContactPage/>}/>
-                                <Route path="/shop" element={<ComingSoonPage/>}/>
-                                <Route path="/horaires" element={<Timetable/>}/>
-                                <Route path="/tarifs" element={<Prices/>}/>
+                <div className="main-content">
+                    <AuthProvider store={store}>
+                        <Routes>
+                            <Route path="/" element={<HomePage/>}/>
+                            <Route path="/login" element={<Login/>}/>
+                            <Route path="/articles/:urlId" element={<Article/>}/>
+                            <Route path="/contact" element={<ContactPage/>}/>
+                            <Route path="/shop" element={<ComingSoonPage/>}/>
+                            <Route path="/horaires" element={<Timetable/>}/>
+                            <Route path="/tarifs" element={<Prices/>}/>
 
-                                <Route path="/secure" element={
-                                    <RequireAuth fallbackPath="/login">
-                                        <HomeSecure/>
-                                    </RequireAuth>
-                                }/>
-                                <Route path="/add" element={
-                                    <RequireAuth fallbackPath="/login">
-                                        <CreateArticle/>
-                                    </RequireAuth>
-                                    }/>
-                                <Route path="/added" element={
-                                    <RequireAuth fallbackPath="/login">
-                                        <ArticleAdded/>
-                                    </RequireAuth>
-                                }/>
-                                <Route path="/edit/:urlId" element={
-                                    <RequireAuth fallbackPath="/login">
-                                        <CreateArticle edit={true}/>
-                                    </RequireAuth>
-                                }/>
-                                <Route path="/edit" element={
-                                    <RequireAuth fallbackPath="/login">
-                                        <EditArticles/>
-                                    </RequireAuth>
-                                }/>
-                                <Route path="/publish" element={
-                                    <RequireAuth fallbackPath="/login">
-                                        <Publish/>
-                                    </RequireAuth>
-                                }/>
-                                <Route path="/view/:urlId" element={
-                                    <RequireAuth fallbackPath="/login">
-                                        <Article hide={false}/>
-                                    </RequireAuth>
-                                }/>
-                                <Route path="/view" element={
-                                    <RequireAuth fallbackPath="/login">
-                                        <ViewArticles/>
-                                    </RequireAuth>
-                                }/>
-                                <Route path="/emails" element={
-                                    <RequireAuth fallbackPath="/login">
-                                        <EmailsView/>
-                                    </RequireAuth>
-                                }/>
-                                <Route path="*" element={<NotFound/>}/>
-                            </Routes>
-                        </AuthProvider>
-                    </div>
+                            <Route path="/secure" element={
+                                <RequireAuth fallbackPath="/login">
+                                    <HomeSecure/>
+                                </RequireAuth>
+                            }/>
+                            <Route path="/add" element={
+                                <RequireAuth fallbackPath="/login">
+                                    <CreateArticle/>
+                                </RequireAuth>
+                            }/>
+                            <Route path="/added" element={
+                                <RequireAuth fallbackPath="/login">
+                                    <ArticleAdded/>
+                                </RequireAuth>
+                            }/>
+                            <Route path="/edit/:urlId" element={
+                                <RequireAuth fallbackPath="/login">
+                                    <CreateArticle edit={true}/>
+                                </RequireAuth>
+                            }/>
+                            <Route path="/edit" element={
+                                <RequireAuth fallbackPath="/login">
+                                    <EditArticles/>
+                                </RequireAuth>
+                            }/>
+                            <Route path="/publish" element={
+                                <RequireAuth fallbackPath="/login">
+                                    <Publish/>
+                                </RequireAuth>
+                            }/>
+                            <Route path="/view/:urlId" element={
+                                <RequireAuth fallbackPath="/login">
+                                    <Article hide={false}/>
+                                </RequireAuth>
+                            }/>
+                            <Route path="/view" element={
+                                <RequireAuth fallbackPath="/login">
+                                    <ViewArticles/>
+                                </RequireAuth>
+                            }/>
+                            <Route path="/emails" element={
+                                <RequireAuth fallbackPath="/login">
+                                    <EmailsView/>
+                                </RequireAuth>
+                            }/>
+                            <Route path="*" element={<NotFound/>}/>
+                        </Routes>
+                    </AuthProvider>
+                </div>
             </HashRouter>
         </div>
-);
+    );
 
 }
 

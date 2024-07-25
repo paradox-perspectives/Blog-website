@@ -4,6 +4,7 @@ import { Form, Input, Button, message, Space } from 'antd';
 import whatsapp from "../whatsapp.png";
 import facebook from "../facebook.png";
 import insta from "../Insta.png";
+import {Helmet} from "react-helmet";
 
 
 const ContactPage = () => {
@@ -68,6 +69,9 @@ const ContactPage = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Oxy-vitale - Contacte</title>
+            </Helmet>
             <div className="flex-row md:flex justify-center items-start py-6 px-4 gap-8 relative z-1 ">
                 <div className="flex flex-col  w-full md:w-4/5">
                     <h1 className="text-2xl font-bold mb-4">Contactez-nous</h1>
@@ -136,24 +140,24 @@ const ContactPage = () => {
 
             <div className="relative mx-auto pl-1 pr-1 md:pr-32 py-2 max-w-4xl pb-6" style={{height: '450px'}}>
                 <h1 className="text-2xl font-bold mb-4">Trouvez-nous</h1>
-                    <iframe
-                        src={googleMapUrl}
-                        style={{border: 0, width: '100%', height: '100%'}}
-                        allowFullScreen=""
-                        loading="lazy"
-                        title="Google Map"
-                    ></iframe>
-                    <a
-                        href={googleMapsRedirectUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="absolute top-0 left-0 w-full h-full"
-                        style={{textDecoration: 'none'}}
-                    >
-                        <span className="sr-only">Open in Google Maps</span>
-                    </a>
-                    <br/>
-                    <br/>
+                <iframe
+                    src={googleMapUrl}
+                    style={{border: 0, width: '100%', height: '100%'}}
+                    allowFullScreen=""
+                    loading="lazy"
+                    title="Google Map"
+                ></iframe>
+                <a
+                    href={googleMapsRedirectUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute top-0 left-0 w-full h-full"
+                    style={{textDecoration: 'none'}}
+                >
+                    <span className="sr-only">Open in Google Maps</span>
+                </a>
+                <br/>
+                <br/>
             </div>
         </div>
     );

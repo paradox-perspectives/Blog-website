@@ -1,9 +1,10 @@
 import React from 'react';
 import { Card, Typography } from 'antd';
-import { CopyOutlined, FacebookOutlined, WhatsAppOutlined } from '@ant-design/icons';
+import { CopyOutlined, FacebookOutlined, WhatsAppOutlined, PushpinOutlined} from '@ant-design/icons';
 import {useNavigate} from "react-router-dom";
 const { Meta } = Card;
 const { Paragraph } = Typography;
+
 
 function ArticleCard2({ article, edit = false, viewAll = false }) {
 
@@ -46,29 +47,33 @@ function ArticleCard2({ article, edit = false, viewAll = false }) {
             onClick={navigateToArticle}
             style={{width: 400}}
             cover={
-            <img
-                alt="example"
-                src={article.coverPhoto}
-            />
-        }
+                <img
+                    alt="example"
+                    src={article.coverPhoto}
+                />
+            }
             bordered={true}
             hoverable={true}
             actions={[
-            <CopyOutlined key="copy link" onClick={copyLink}/>,
-            //<FacebookOutlined key="share messenger" onClick={ (event)  => handleShareClick(event,"messenger") }/>,
-            <WhatsAppOutlined key="share whatsapp" onClick={ (event) => handleShareClick(event,'whatsapp') } />
+                <CopyOutlined key="copy link" onClick={copyLink}/>,
+                //<FacebookOutlined key="share messenger" onClick={ (event)  => handleShareClick(event,"messenger") }/>,
+                <WhatsAppOutlined key="share whatsapp" onClick={ (event) => handleShareClick(event,'whatsapp') } />
 
-        ]}
-            >
+            ]}
+        >
             <Meta
-                title={article.title}
+                title={
+                    <>
+                        {article.title} &#32; {article.themes.includes('Pinned') && <PushpinOutlined />}
+                    </>
+                }
                 description={
                     <Paragraph>
                         {article.teaser + ' '} <a onClick={navigateToArticle} style={{ color: 'blue' }}>...Read more</a>
                     </Paragraph>
                 }
             />
-</Card>
+        </Card>
     )
 }
 
