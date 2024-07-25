@@ -1,5 +1,4 @@
 import React from 'react';
-import Video from '../video.mov';
 import Articles from "./article/view/Articles";
 
 const HomePage = () => {
