@@ -55,7 +55,7 @@ const ContactPage = () => {
                     <img src={whatsapp} alt="Whatsapp" style={iconStyle} className="md:hidden" />
                     <img src={whatsapp} alt="Whatsapp" style={iconStyleMedium} className="hidden md:inline-block" />
                 </a>
-                <a href="https://www.instagram.com/paradox_perspectives_/" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.instagram.com/oxyvitalfitness?igsh=MWJpMHRxbXU1eTJ4bQ%3D%3D" target="_blank" rel="noopener noreferrer">
                     <img src={insta} alt="Instagram" style={iconStyle} className="md:hidden" />
                     <img src={insta} alt="Instagram" style={iconStyleMedium} className="hidden md:inline-block" />
                 </a>
