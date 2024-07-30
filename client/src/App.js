@@ -20,6 +20,7 @@ import ArticleAdded from "./components/article/add/ArticleAdded";
 import Timetable from "./components/TimeTable";
 import Prices from "./components/Prices";
 import HomePage from "./components/HomePage";
+import Footer from './components/Footer';
 
 
 function App() {
@@ -94,6 +95,7 @@ function App() {
                         </Routes>
                     </AuthProvider>
                 </div>
+                <Footer />
             </HashRouter>
         </div>
     );
