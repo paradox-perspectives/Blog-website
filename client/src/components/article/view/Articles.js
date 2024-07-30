@@ -85,7 +85,7 @@ function Articles() {
 
     return (
         <div className="flex flex-col justify-center md:flex-row items-start py-6 px-4 gap-8">
-            <div className="flex flex-col w-full md:w-3/5 lg:w-3/5 max-w-2xl">
+            <div className="flex-col w-11/12 ml-4 md:ml-0 md:mr-4 lg:mr-8 md:w-3/5 lg:w-3/5 max-w-2xl">
 
                 {articles.map((article, index) => (
                     <div className="mb-6" key={index}>

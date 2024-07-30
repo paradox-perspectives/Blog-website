@@ -1,114 +1,73 @@
 import React, { useState, useEffect } from 'react';
-import { ScheduleView } from 'react-schedule-view';
+import { Table } from 'antd';
 import {Helmet} from "react-helmet";
 
-
-const data = [
+const dataSource = [
     {
-        name: 'Lundi',
-        events: [
-            { startTime: 9, endTime: 12, title: 'Session du matin', color: 'lightblue' },
-            { startTime: 16, endTime: 20, title: 'Session du soir', color: 'lightgreen' },
-        ],
+        key: '1',
+        type: '1 Mois',
+        price: '45€',
     },
     {
-        name: 'Mardi',
-        events: [
-            { startTime: 9, endTime: 12, title: 'Session du matin', color: 'lightblue' },
-            { startTime: 16, endTime: 20, title: 'Session du soir', color: 'lightgreen' },
-        ],
+        key: '2',
+        type: '3 Mois',
+        price: '120€',
     },
     {
-        name: 'Mercredi',
-        events: [{ startTime: 15, endTime: 21, title: 'Session du soir', color: 'lightgreen' }],
+        key: '3',
+        type: '1 An',
+        price: '500€',
     },
     {
-        name: 'Jeudi',
-        events: [
-            { startTime: 9, endTime: 12, title: 'Session du matin', color: 'lightblue' },
-            { startTime: 16, endTime: 20, title: 'Session du soir', color: 'lightgreen' },
-        ],
+        key: '4',
+        type: '',
+        price: '',
     },
     {
-        name: 'Vendredi',
-        events: [{ startTime: 15, endTime: 20, title: 'Session du soir', color: 'lightgreen' }],
+        key: '5',
+        type: 'Pass Journée',
+        price: '10€',
     },
     {
-        name: 'Samedi',
-        events: [{ startTime: 9, endTime: 12, title: 'Session du matin', color: 'lightblue' }],
+        key: '6',
+        type: 'Carte 10 Séances',
+        price: '120€',
     },
     {
-        name: 'Dimanche',
-        events: [],
+        key: '7',
+        type: 'Étudiants',
+        price: '10% de réduction',
     },
 ];
 
-const TimeTable = () => {
-    const [currentDayIndex, setCurrentDayIndex] = useState(0);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+const columns = [
+    {
+        title: <span className="text-lg">Type</span>,
+        dataIndex: 'type',
+        key: 'type',
+        render: (text) => <span className="text-lg">{text}</span>,
+    },
+    {
+        title: <span className="text-lg">Prix</span>,
+        dataIndex: 'price',
+        key: 'price',
+        render: (text) => <span className="text-lg">{text}</span>,
+    },
+];
 
-    const updateView = () => {
-        setIsMobile(window.innerWidth < 768);
-    };
-
-    useEffect(() => {
-        window.addEventListener('resize', updateView);
-        return () => window.removeEventListener('resize', updateView);
-    }, []);
-
-    const prevDay = () => {
-        setCurrentDayIndex((prevIndex) => (prevIndex === 0 ? data.length - 1 : prevIndex - 1));
-    };
-
-    const nextDay = () => {
-        setCurrentDayIndex((prevIndex) => (prevIndex === data.length - 1 ? 0 : prevIndex + 1));
-    };
-
-    const currentDay = data[currentDayIndex];
-
-    const customTheme = {
-        timeFormatter: (time) => `${time}:00`,
-        timeRangeFormatter: (startTime, endTime) => `${startTime}:00 - ${endTime}:00`,
-
-        style: {
-            root: {
-                backgroundColor: '#fff',
-            },
-            dayLabels: {
-                color: '#000',
-                fontWeight: 'bold',
-            },
-            timeScaleLabels: {
-                color: '#666',
-            },
-            majorGridlinesBorder: 'solid 1px #e0e0e0',
-            minorGridlinesBorder: 'solid 1px #f0f0f0',
-            verticalGridlinesBorder: 'solid 1px #e0e0e0',
-        },
-        hourHeight: '60px',
-    };
+const Prices = () => {
 
     return (
-        <div className="container mx-auto px-4 py-4 max-w-4xl mb-8">
+        <div className="container mx-auto px-4 py-4 max-w-4xl">
             <Helmet>
                 <title>
-                    Oxy-vitale - Heures d'ouverture
+                    Oxy-vitale - Tarifs
                 </title>
             </Helmet>
-            <h2 className="text-center text-2xl font-bold mb-4">Heures d'ouverture </h2>
-            {isMobile ? (
-                <div>
-                    <div className="flex justify-between items-center mb-4">
-                        <button onClick={prevDay} className="p-2 bg-gray-300 rounded">←</button>
-                        <button onClick={nextDay} className="p-2 bg-gray-300 rounded">→</button>
-                    </div>
-                    <ScheduleView daySchedules={[currentDay]} viewStartTime={9} viewEndTime={21}/>
-                </div>
-            ) : (
-                <ScheduleView daySchedules={data} viewStartTime={9} viewEndTime={21} theme={customTheme}/>
-            )}
+            <h2 className="text-center text-2xl font-bold mb-4">Abonnements</h2>
+            <Table size={"large"} dataSource={dataSource} columns={columns} pagination={false} bordered/>
         </div>
     );
 };
 
-export default TimeTable;
+export default Prices;

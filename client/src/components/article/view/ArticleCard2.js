@@ -45,7 +45,6 @@ function ArticleCard2({ article, edit = false, viewAll = false }) {
     return (
         <Card
             onClick={navigateToArticle}
-            style={{width: 400}}
             cover={
                 <img
                     alt="example"

@@ -73,7 +73,7 @@ const ContactPage = () => {
                 <title>Oxy-vitale - Contacte</title>
             </Helmet>
             <div className="flex-row md:flex justify-center items-start py-6 px-4 gap-8 relative z-1 ">
-                <div className="flex flex-col  w-full md:w-4/5">
+                <div className="flex flex-col  w-full md:w-4/5 lg:w-2/3 xl:w-1/2">
                     <h1 className="text-2xl font-bold mb-4">Contactez-nous</h1>
                     <p>Vous souhaitez en savoir plus sur notre fonctionnement ?</p>
                     <p className="text-sm text-gray-600">Envoyez-nous un message en utilisant l'une des plateformes

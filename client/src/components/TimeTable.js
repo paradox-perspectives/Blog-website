@@ -96,7 +96,7 @@ const TimeTable = () => {
                         <button onClick={prevDay} className="p-2 bg-gray-300 rounded">←</button>
                         <button onClick={nextDay} className="p-2 bg-gray-300 rounded">→</button>
                     </div>
-                    <ScheduleView daySchedules={[currentDay]} viewStartTime={9} viewEndTime={21}/>
+                    <ScheduleView daySchedules={[currentDay]} viewStartTime={9} viewEndTime={21} theme={customTheme}/>
                 </div>
             ) : (
                 <ScheduleView daySchedules={data} viewStartTime={9} viewEndTime={21} theme={customTheme}/>
