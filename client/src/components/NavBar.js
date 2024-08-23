@@ -20,7 +20,7 @@ function Nav() {
                         <div className="flex items-center justify-between w-full">
                             <div className="flex items-center">
                                 <a href={"/"}>
-                                    <img src={logo} alt="logo" className="h-20 w-24"/>
+                                    <img src={logo} alt="logo" className="h-16 w-40"/>
                                 </a>
                             </div>
                             <div className="hidden md:block">
