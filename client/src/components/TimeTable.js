@@ -7,14 +7,14 @@ const data = [
         name: 'Lundi',
         events: [
             { startTime: 9, endTime: 12, title: 'Session du matin', color: 'lightblue' },
-            { startTime: 16, endTime: 20, title: 'Session du soir', color: 'lightgreen' },
+            { startTime: 16, endTime: 21, title: 'Session du soir', color: 'lightgreen' },
         ],
     },
     {
         name: 'Mardi',
         events: [
             { startTime: 9, endTime: 12, title: 'Session du matin', color: 'lightblue' },
-            { startTime: 16, endTime: 20, title: 'Session du soir', color: 'lightgreen' },
+            { startTime: 16, endTime: 21, title: 'Session du soir', color: 'lightgreen' },
         ],
     },
     {
@@ -25,7 +25,7 @@ const data = [
         name: 'Jeudi',
         events: [
             { startTime: 9, endTime: 12, title: 'Session du matin', color: 'lightblue' },
-            { startTime: 16, endTime: 20, title: 'Session du soir', color: 'lightgreen' },
+            { startTime: 16, endTime: 21, title: 'Session du soir', color: 'lightgreen' },
         ],
     },
     {
