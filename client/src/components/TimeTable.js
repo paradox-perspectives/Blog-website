@@ -19,7 +19,7 @@ const data = [
     },
     {
         name: 'Mercredi',
-        events: [{ startTime: 15, endTime: 21, title: 'Session du soir', color: 'lightgreen' }],
+        events: [{ startTime: 15, endTime: 20, title: 'Session du soir', color: 'lightgreen' }],
     },
     {
         name: 'Jeudi',
