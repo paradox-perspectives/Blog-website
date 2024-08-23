@@ -98,7 +98,7 @@ function CreateArticle({edit = false}) {
         request
             .then(response => {
                 console.log('Article saved:', response.data);
-                navigate('/#added');
+                navigate('/added');
             })
             .catch(error => {
                 console.error('Error saving article:', error);
