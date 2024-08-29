@@ -12,7 +12,7 @@ function ArticleCard2({ article, edit = false, viewAll = false }) {
 
     let navLink = "";
     if (!edit && !viewAll) {
-        navLink += "articles/"
+        navLink += "/"
     }
     navLink += `${article.urlId}`;
 
