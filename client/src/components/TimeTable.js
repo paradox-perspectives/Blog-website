@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ScheduleView } from 'react-schedule-view';
+import {Helmet} from "react-helmet";
+
 
 
 const data = [
@@ -89,6 +91,11 @@ const TimeTable = () => {
 
     return (
         <div className="container mx-auto px-4 py-4 max-w-4xl mb-8">
+            <Helmet>
+                <title>
+                    Oxy-vitale - Horaires
+                </title>
+            </Helmet>
             <h2 className="text-center text-2xl font-bold mb-4">Heures d'ouverture </h2>
             {isMobile ? (
                 <div>
