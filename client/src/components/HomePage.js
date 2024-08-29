@@ -1,11 +1,10 @@
 import React from 'react';
-import Articles from "./article/view/Articles";
+import Article from "./article/view/Article";
 
 const HomePage = () => {
     return (
         <div className="">
-
-            <Articles/>
+            <Article id="bienvenue-chez-l'oxy-vitale"/>
         </div>
     );
 };

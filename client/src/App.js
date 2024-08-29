@@ -39,6 +39,7 @@ function App() {
                     <AuthProvider store={store}>
                         <Routes>
                             <Route path="/" element={<HomePage/>}/>
+                            <Route path="/articles" element={<Articles/>}/>
                             <Route path="/login" element={<Login/>}/>
                             <Route path="/articles/:urlId" element={<Article/>}/>
                             <Route path="/contact" element={<ContactPage/>}/>

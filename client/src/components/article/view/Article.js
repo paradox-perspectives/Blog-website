@@ -10,10 +10,14 @@ const { Title, Paragraph, Text } = Typography;
 
 
 
-function Article({ hide = true }) {
+function Article({ hide = true, id = null }) {
     const [article, setArticle] = useState({})
     const [articleFound, setArticleFound] = useState(null);
-    const { urlId } = useParams();
+    if (id) {
+        const urlId = id
+    } else {
+        const { urlId } = useParams();
+    }
     const apiUrl = process.env.REACT_APP_BACKEND_URL;
     const navigate = useNavigate();
 

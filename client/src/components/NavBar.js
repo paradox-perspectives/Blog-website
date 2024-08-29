@@ -34,16 +34,23 @@ function Nav() {
 
                                     <a
                                         href="/#horaires"
-                                        className={`hover:bg-[#C492B1] px-3 py-2 rounded-md text-lg font-medium ${location.pathname === '/#shop' ? 'text-white' : 'text-gray-300'}`}
+                                        className={`hover:bg-[#C492B1] px-3 py-2 rounded-md text-lg font-medium ${location.pathname === '/#horaires' ? 'text-white' : 'text-gray-300'}`}
                                     >
                                         Horaires
                                     </a>
 
                                     <a
                                         href="/#tarifs"
-                                        className={`hover:bg-[#C492B1] px-3 py-2 rounded-md text-lg font-medium ${location.pathname === '/#shop' ? 'text-white' : 'text-gray-300'}`}
+                                        className={`hover:bg-[#C492B1] px-3 py-2 rounded-md text-lg font-medium ${location.pathname === '/#tarifs' ? 'text-white' : 'text-gray-300'}`}
                                     >
                                         Tarifs
+                                    </a>
+
+                                    <a
+                                        href="/#articles"
+                                        className={`hover:bg-[#C492B1] px-3 py-2 rounded-md text-lg font-medium ${location.pathname === '/#articles' ? 'text-white' : 'text-gray-300'}`}
+                                    >
+                                        Articles
                                     </a>
 
                                     <a
@@ -123,7 +130,7 @@ function Nav() {
 
                             <a
                                 href="/#horaires"
-                                className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/#shop' ? 'text-white' : 'text-gray-300'}`}
+                                className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/#articles' ? 'text-white' : 'text-gray-300'}`}
                                 onClick={handleLinkClick}
                             >
                                 Horaires
@@ -131,10 +138,18 @@ function Nav() {
 
                             <a
                                 href="/#tarifs"
-                                className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/#shop' ? 'text-white' : 'text-gray-300'}`}
+                                className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/#articles' ? 'text-white' : 'text-gray-300'}`}
                                 onClick={handleLinkClick}
                             >
                                 Tarifs
+                            </a>
+
+                            <a
+                                href="/#articles"
+                                className={`hover:bg-[#C492B1] text-white block px-3 py-2 rounded-md text-base font-medium ${location.pathname === '/#articles' ? 'text-white' : 'text-gray-300'}`}
+                                onClick={handleLinkClick}
+                            >
+                                Articles
                             </a>
 
                             <a
