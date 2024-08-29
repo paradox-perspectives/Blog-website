@@ -10,6 +10,8 @@ const mailRoutes = require('./mailRoute');
 const cors = require('cors');
 
 const origin = process.env.FRONT_END_URL;
+const url = process.env.BACK_END_URL;
+
 
 var corsOptions = {
     origin,
@@ -50,6 +52,22 @@ function ensureAuthor(req, res, next) {
 app.get('/author-dashboard', ensureAuthor, (req, res) => {
     res.send('Welcome to the Author Dashboard');
 });
+
+
+const interval = 30000; // Interval in milliseconds (30 seconds)
+
+// hack render.com lol
+function reloadWebsite() {
+    axios.get(url)
+        .then(response => {
+            console.log(`Reloaded at ${new Date().toISOString()}: Status Code ${response.status}`);
+        })
+        .catch(error => {
+            console.error(`Error reloading at ${new Date().toISOString()}:`, error.message);
+        });
+}
+
+setInterval(reloadWebsite, interval);
 
 app.listen(5000, () => {
     console.log('Server is running on http://localhost:5000');
