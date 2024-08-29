@@ -8,6 +8,7 @@ const themeRoutes = require('./themesRoutes');
 const mailRoutes = require('./mailRoute');
 
 const cors = require('cors');
+const axios = require('axios');
 
 const origin = process.env.FRONT_END_URL;
 const url = process.env.BACK_END_URL;
