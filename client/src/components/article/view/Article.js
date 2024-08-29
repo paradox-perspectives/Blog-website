@@ -13,11 +13,12 @@ const { Title, Paragraph, Text } = Typography;
 function Article({ hide = true, id = null }) {
     const [article, setArticle] = useState({})
     const [articleFound, setArticleFound] = useState(null);
+    const { temp } = useParams();
+
     let urlId = ""
     if (id) {
         urlId = id
     } else {
-        const { temp } = useParams();
         urlId = temp
     }
     const apiUrl = process.env.REACT_APP_BACKEND_URL;
