@@ -15,9 +15,9 @@ function Article({ hide = true, id = null }) {
     const [articleFound, setArticleFound] = useState(null);
     const { temp } = useParams();
 
-    let urlId = id
+    let urlId = temp
     if (id) {
-        urlId = temp
+        urlId = id
     }
     const apiUrl = process.env.REACT_APP_BACKEND_URL;
     console.log("urlid", urlId)
