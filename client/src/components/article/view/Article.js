@@ -25,7 +25,7 @@ function Article({ hide = true, id = null }) {
     useEffect(() => {
         if (urlId2) {
             // Fetch the article data and populate the form
-            axios.get(`${apiUrl}/articles/${urlId}`)
+            axios.get(`${apiUrl}/articles/${urlId2}`)
                 .then(response => {
                     setArticle(response.data);
                     setArticleFound(true);
