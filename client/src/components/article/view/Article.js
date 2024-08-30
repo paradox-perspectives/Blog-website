@@ -16,13 +16,13 @@ function Article({ hide = true, id = null }) {
     const { temp } = useParams();
 
     let urlId = ""
-    if (id) {
+    if (id != null) {
         urlId = id
     } else {
         urlId = temp
     }
     const apiUrl = process.env.REACT_APP_BACKEND_URL;
-    const navigate = useNavigate();
+    console.log("urlid", urlId)
 
     useEffect(() => {
         if (urlId) {

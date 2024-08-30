@@ -25,7 +25,8 @@ function ArticleCard2({ article, edit = false, viewAll = false }) {
     };
 
     const navigateToArticle = () => {
-        navigate(jumpLink);
+        console.log("navlink", navLink)
+        navigate(navLink);
     };
 
     const handleShareClick = (event, platform) => {
