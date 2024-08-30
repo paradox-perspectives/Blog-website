@@ -13,17 +13,17 @@ const { Title, Paragraph, Text } = Typography;
 function Article({ hide = true, id = null }) {
     const [article, setArticle] = useState({})
     const [articleFound, setArticleFound] = useState(null);
-    const { temp } = useParams();
+    const { urlId } = useParams();
 
-    let urlId = temp
+    let urlId2 = urlId
     if (id) {
-        urlId = id
+        urlId2 = id
     }
     const apiUrl = process.env.REACT_APP_BACKEND_URL;
-    console.log("urlid", urlId)
+    console.log("urlid is:", urlId2)
 
     useEffect(() => {
-        if (urlId) {
+        if (urlId2) {
             // Fetch the article data and populate the form
             axios.get(`${apiUrl}/articles/${urlId}`)
                 .then(response => {
