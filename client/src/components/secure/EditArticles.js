@@ -20,7 +20,7 @@ function EditArticles() {
     }, []);
 
     return (
-        <div>
+        <div className={"w-1/2 flex-col justify-center"}>
             {articles.map((article, index) => (
                 <div className="mb-6" key={index}>
                     <ArticleCard2 article={article} edit={true}/>
