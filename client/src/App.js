@@ -27,6 +27,8 @@ import {HomeOutlined} from "@ant-design/icons";
 import {Button} from "antd";
 import Clients from "./components/secure/Clients";
 import ClientEdit from "./components/secure/ClientEdit";
+import Availability from "./components/secure/Availability";
+import CalendarAvailability from "./components/secure/CalendarAvailability";
 
 // Non-Secure Layout (with NavBar)
 function NonSecureLayout() {
@@ -101,6 +103,8 @@ function App() {
                             <Route path="/client/add" element={<ClientAdd />} />
                             <Route path="/client" element={<Clients />} />
                             <Route path="/client/edit/:id" element={<ClientEdit/>} />
+                            <Route path="/daily-availability" element={<Availability />} />
+                            <Route path="/calendar-checkout" element={<CalendarAvailability />} />
                         </Route>
 
                         {/* 404 Not Found route */}

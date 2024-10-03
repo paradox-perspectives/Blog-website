@@ -38,7 +38,15 @@ function HomeSecure() {
                 { key: '6', label: 'View', path: 'client'},
             ],
         },
-        { key: '3', icon: <BookOutlined />, label: 'Bookings' },
+        {
+            key: 'sub3',
+            label: 'Bookings',
+            icon: <BookOutlined />,
+            children: [
+                { key: '7', label: 'Daily Schedule', path: 'daily-availability'},
+                { key: '8', label: 'Date Management', path: 'calendar-checkout'},
+            ],
+        }
     ];
 
     const toggleCollapsed = () => {
