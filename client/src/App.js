@@ -29,6 +29,7 @@ import Clients from "./components/secure/Clients";
 import ClientEdit from "./components/secure/ClientEdit";
 import Availability from "./components/secure/Availability";
 import CalendarAvailability from "./components/secure/CalendarAvailability";
+import CalendarSelector from "./components/secure/CalendarSelector";
 
 // Non-Secure Layout (with NavBar)
 function NonSecureLayout() {
@@ -105,6 +106,7 @@ function App() {
                             <Route path="/client/edit/:id" element={<ClientEdit/>} />
                             <Route path="/daily-availability" element={<Availability />} />
                             <Route path="/calendar-checkout" element={<CalendarAvailability />} />
+                            <Route path="/calendar-selector" element={<CalendarSelector />} />
                         </Route>
 
                         {/* 404 Not Found route */}

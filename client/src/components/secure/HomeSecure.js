@@ -45,6 +45,7 @@ function HomeSecure() {
             children: [
                 { key: '7', label: 'Daily Schedule', path: 'daily-availability'},
                 { key: '8', label: 'Date Management', path: 'calendar-checkout'},
+                { key: '9', label: 'Book date', path: 'calendar-selector'},
             ],
         }
     ];
@@ -66,7 +67,7 @@ function HomeSecure() {
 
     return (
         <div className="w-1/2 flex justify-center">
-            <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }}>
+            <Button type="primary" onClick={toggleCollapsed} style={{ marginBottom: 16 }} ghost>
                 {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             </Button>
             <Menu

@@ -1,9 +1,24 @@
-import React, { useState } from 'react';
-import { Calendar, Checkbox, List, Button, Card } from 'antd';
+import React, {useEffect, useState} from 'react';
+import {Calendar, Checkbox, List, Button, Card, message} from 'antd';
 import moment from 'moment';
+import axios from "axios";
 
 const CalendarAvailability = () => {
     const [checkedOutDates, setCheckedOutDates] = useState([]);
+    const apiUrl = process.env.REACT_APP_BACKEND_URL;
+
+    // Fetch the checked-out dates from the backend when the component mounts
+    useEffect(() => {
+        axios
+            .get(`${apiUrl}/availability/dates`)
+            .then((response) => {
+                setCheckedOutDates(response.data);
+            })
+            .catch((error) => {
+                console.error('Error fetching checked-out dates:', error);
+                message.error('Failed to load data.');
+            });
+    }, []); // Empty dependency array means this effect runs only once on mount
 
     // Handle checkbox change to update the checked-out dates list
     const handleCheckboxChange = (value, checked) => {
@@ -13,6 +28,19 @@ const CalendarAvailability = () => {
             : checkedOutDates.filter((date) => date !== formattedDate); // Remove from list if unchecked
 
         setCheckedOutDates(newCheckedOutDates);
+    };
+
+    // Send the updated list to the backend via PUT request
+    const updateCheckedOutDates = () => {
+        axios
+            .put(`${apiUrl}/availability/dates`, checkedOutDates)
+            .then(() => {
+                message.success('Checked-out dates updated successfully!');
+            })
+            .catch((error) => {
+                console.error('Error updating checked-out dates:', error);
+                message.error('Failed to update checked-out dates.');
+            });
     };
 
     // Custom rendering of dates in the calendar with checkboxes
@@ -60,9 +88,10 @@ const CalendarAvailability = () => {
                 />
                 <Button
                     type="primary"
-                    onClick={() => setCheckedOutDates([])}
+                    onClick={() => updateCheckedOutDates([])}
                     disabled={checkedOutDates.length === 0}
                     className="mt-4"
+                    ghost
                 >
                     Clear All Checked-Out Dates
                 </Button>
