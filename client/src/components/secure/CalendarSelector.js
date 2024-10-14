@@ -6,16 +6,25 @@ import axios from 'axios';
 const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
 const CalendarSelector = () => {
-    const today = moment().startOf('day').format('YYYY-MM-DD'); // Store date as a string in 'YYYY-MM-DD'
+    // Use DD-MM-YYYY format for the display of the selected date
+    const today = moment().startOf('day').format('DD-MM-YYYY'); // Store date as a string in 'DD-MM-YYYY'
     const [weeklyAvailability, setWeeklyAvailability] = useState([]);
     const [blockedDates, setBlockedDates] = useState([]);
     const [selectedDate, setSelectedDate] = useState(today); // Use string format for selected date
     const [availableSlots, setAvailableSlots] = useState([]);
 
-    // Fetch weekly availability and blocked dates
     useEffect(() => {
+        // Fetch data first
         fetchAvailabilityData();
     }, []);
+
+    useEffect(() => {
+        if (weeklyAvailability.length > 0) {
+            // Only determine available slots once the availability data is fetched
+            determineAvailableSlots(moment().format('YYYY-MM-DD'));
+            setSelectedDate(moment().format('DD-MM-YYYY')); // Set the displayed date to today's date
+        }
+    }, [weeklyAvailability, blockedDates]); // Re-run this effect when the availability data is updated
 
     const fetchAvailabilityData = () => {
         axios
@@ -39,24 +48,44 @@ const CalendarSelector = () => {
             });
     };
 
-    const handleDateSelect = (date) => {
-        if (!date || !moment.isMoment(date)) return;
 
-        const newDate = date.clone().startOf('day').format('YYYY-MM-DD'); // Convert to string
+    const handleDateSelect = (date) => {
+        let currentDate;
+
+        // Extract date using the dayjs-like object's $d field if available
+        if (date && date.$d) {
+            currentDate = moment(date.$d); // Convert $d (native JS Date) to moment
+            //console.log("Using extracted date from dayjs-like object", currentDate.format('DD-MM-YYYY'));
+        } else {
+            // Fallback: use today's date if the date is invalid
+            currentDate = moment();
+            console.warn("Date invalid or not accessible, using today's date");
+        }
+
+        // Convert the selected date to 'DD-MM-YYYY' format for display
+        const newDate = currentDate.clone().startOf('day').format('DD-MM-YYYY'); // Format for display
+
+        // Update the state with the formatted date for display purposes
         setSelectedDate(newDate);
 
-        if (blockedDates.includes(newDate)) {
+        // Use the same `currentDate` for comparison, but format it as 'YYYY-MM-DD' for backend logic
+        const newDateForComparison = currentDate.clone().startOf('day').format('YYYY-MM-DD'); // Format for comparison
+
+        // Check if the date is blocked
+        if (blockedDates.includes(newDateForComparison)) {
             message.warning(`The selected date ${newDate} is blocked!`);
             setAvailableSlots([]); // Clear slots for blocked dates
         } else {
-            determineAvailableSlots(newDate);
+            determineAvailableSlots(newDateForComparison); // Determine available slots if not blocked
         }
     };
+
+
 
     const determineAvailableSlots = (dateStr) => {
         if (!dateStr) return;
 
-        const date = moment(dateStr, 'YYYY-MM-DD'); // Convert string back to moment
+        const date = moment(dateStr, 'YYYY-MM-DD'); // Convert string back to moment for day logic
         const dayOfWeek = date.format('dddd').toLowerCase();
         const dayAvailability = weeklyAvailability.find((day) => day.day === dayOfWeek);
 
@@ -90,9 +119,17 @@ const CalendarSelector = () => {
 
     // Custom cell rendering to display blocked dates and special indications
     const cellRender = (value) => {
-        const formattedDate = value.format('YYYY-MM-DD');
+        const formattedDate = value.format('YYYY-MM-DD'); // Format for comparison
         const isBlocked = blockedDates.includes(formattedDate);
-        return isBlocked ? <Badge status="error" text="Blocked" /> : null;
+        return isBlocked ? <Badge status="error" text="Booked out" /> : null;
+    };
+
+    const disabledDate = (current) => {
+        return current && current < moment().startOf('day');
+    };
+
+    const handleSlotClick = (slot) => {
+        window.location.hash = `#/confirm-booking?date=${selectedDate}&slot=${slot}`;
     };
 
     return (
@@ -103,7 +140,7 @@ const CalendarSelector = () => {
             <Card className="mb-4">
                 <h3 className="text-xl font-semibold mb-4">Pick a Date</h3>
                 <Calendar
-                    value={moment(selectedDate, 'YYYY-MM-DD')} // Convert string date back to moment
+                    disabledDate={disabledDate}
                     onSelect={handleDateSelect} // Handle date selection from the calendar
                     cellRender={cellRender} // Use the new `cellRender` for custom cell rendering
                     fullscreen={true} // Show the full calendar view
@@ -118,7 +155,7 @@ const CalendarSelector = () => {
                     <Row gutter={[16, 16]}>
                         {availableSlots.map((slot, index) => (
                             <Col key={index} span={6}>
-                                <Button type="primary" style={{ width: '100%' }}>
+                                <Button type="primary" style={{ width: '100%' }} onClick={() => handleSlotClick(slot)} ghost>
                                     {slot}
                                 </Button>
                             </Col>
