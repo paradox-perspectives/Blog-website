@@ -31,6 +31,8 @@ import Availability from "./components/secure/Availability";
 import CalendarAvailability from "./components/secure/CalendarAvailability";
 import CalendarSelector from "./components/secure/CalendarSelector";
 import ConfirmBooking from "./components/secure/ConfirmBooking";
+import RoomsPage from "./components/secure/RoomsPage";
+import RoomPage from "./components/secure/RoomPage";
 
 // Non-Secure Layout (with NavBar)
 function NonSecureLayout() {
@@ -107,8 +109,10 @@ function App() {
                             <Route path="/client/edit/:id" element={<ClientEdit/>} />
                             <Route path="/daily-availability" element={<Availability />} />
                             <Route path="/calendar-checkout" element={<CalendarAvailability />} />
-                            <Route path="/calendar-selector" element={<CalendarSelector />} />
+                            <Route path="/calendar-selector/:roomId" element={<CalendarSelector />} />
                             <Route path="/confirm-booking" element={<ConfirmBooking />} />
+                            <Route path="/rooms" element={<RoomsPage/>} />
+                            <Route path="/rooms/:roomId" element={<RoomPage/>} />
                         </Route>
 
                         {/* 404 Not Found route */}

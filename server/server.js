@@ -1,13 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
-const articleRoutes = require('./articleRoutes');
-const userRoutes = require('./userRoutes');
-const cloudinaryRoutes = require('./cloudinaryRoutes');
+const articleRoutes = require('./articleRoute');
+const userRoutes = require('./userRoute');
+const cloudinaryRoutes = require('./cloudinaryRoute');
 const themeRoutes = require('./themesRoutes');
 const mailRoutes = require('./mailRoute');
-const clientRoutes = require('./clientRoutes');
-const availabilityRoutes = require('./availabilityRoutes');
+const clientRoutes = require('./clientRoute');
+const availabilityRoutes = require('./availabilityRoute');
+const roomRoutes = require('./roomRoute');
+const bookRoutes = require('./bookRoute');
 
 
 const cors = require('cors');
@@ -45,6 +47,9 @@ app.use('/themes', themeRoutes);
 app.use('/mail', mailRoutes);
 app.use('/client', clientRoutes);
 app.use('/availability', availabilityRoutes);
+app.use('/room', roomRoutes);
+app.use('/book', bookRoutes);
+
 
 function ensureAuthor(req, res, next) {
     if (req.isAuthenticated() && req.user.role === 'Author') {

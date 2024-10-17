@@ -46,6 +46,7 @@ function HomeSecure() {
                 { key: '7', label: 'Daily Schedule', path: 'daily-availability'},
                 { key: '8', label: 'Date Management', path: 'calendar-checkout'},
                 { key: '9', label: 'Book date', path: 'calendar-selector'},
+                { key: '10', label: 'Book rooms', path: 'rooms'}
             ],
         }
     ];

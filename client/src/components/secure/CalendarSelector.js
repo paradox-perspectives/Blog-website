@@ -1,30 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Button, Card, Row, Col, message, Badge } from 'antd';
-import moment from 'moment';
 import axios from 'axios';
+import moment from 'moment';
+import {
+    isDateBlocked,
+    generateAvailableSlots,
+    disablePastDates,
+    getDayOfWeek, isSlotBooked, getBookedSlotsForRoom
+} from './availabilityUtils';
+import {useParams} from "react-router-dom"; // Import the utility functions
 
 const apiUrl = process.env.REACT_APP_BACKEND_URL;
 
 const CalendarSelector = () => {
-    // Use DD-MM-YYYY format for the display of the selected date
-    const today = moment().startOf('day').format('DD-MM-YYYY'); // Store date as a string in 'DD-MM-YYYY'
+    const { roomId } = useParams();
+    const today = moment().startOf('day').format('DD-MM-YYYY');
     const [weeklyAvailability, setWeeklyAvailability] = useState([]);
     const [blockedDates, setBlockedDates] = useState([]);
-    const [selectedDate, setSelectedDate] = useState(today); // Use string format for selected date
+    const [selectedDate, setSelectedDate] = useState(today);
     const [availableSlots, setAvailableSlots] = useState([]);
+    const [bookedSlotsForRoom, setBookedSlotsForRoom] = useState([]);
 
     useEffect(() => {
-        // Fetch data first
         fetchAvailabilityData();
     }, []);
 
     useEffect(() => {
-        if (weeklyAvailability.length > 0) {
-            // Only determine available slots once the availability data is fetched
-            determineAvailableSlots(moment().format('YYYY-MM-DD'));
-            setSelectedDate(moment().format('DD-MM-YYYY')); // Set the displayed date to today's date
+        if (roomId) {
+            fetchBookedSlots();
         }
-    }, [weeklyAvailability, blockedDates]); // Re-run this effect when the availability data is updated
+    }, [roomId]);
+
+    useEffect(() => {
+        if (weeklyAvailability.length > 0) {
+            determineAvailableSlots(moment().format('YYYY-MM-DD'));
+            setSelectedDate(moment().format('DD-MM-YYYY'));
+        }
+    }, [weeklyAvailability, blockedDates]);
 
     const fetchAvailabilityData = () => {
         axios
@@ -48,45 +60,41 @@ const CalendarSelector = () => {
             });
     };
 
+    const fetchBookedSlots = async () => {
+        try {
+            const bookedSlots = await getBookedSlotsForRoom(roomId); // Fetching booked slots for room
+            setBookedSlotsForRoom(bookedSlots);
+        } catch (error) {
+            message.error('Failed to load bookings for this room.');
+        }
+    };
 
-    const handleDateSelect = (date) => {
+    const handleDateSelect = async (date) => {
         let currentDate;
-
-        // Extract date using the dayjs-like object's $d field if available
         if (date && date.$d) {
-            currentDate = moment(date.$d); // Convert $d (native JS Date) to moment
-            //console.log("Using extracted date from dayjs-like object", currentDate.format('DD-MM-YYYY'));
+            currentDate = moment(date.$d);
         } else {
-            // Fallback: use today's date if the date is invalid
             currentDate = moment();
             console.warn("Date invalid or not accessible, using today's date");
         }
 
-        // Convert the selected date to 'DD-MM-YYYY' format for display
-        const newDate = currentDate.clone().startOf('day').format('DD-MM-YYYY'); // Format for display
-
-        // Update the state with the formatted date for display purposes
+        const newDate = currentDate.clone().startOf('day').format('DD-MM-YYYY');
         setSelectedDate(newDate);
 
-        // Use the same `currentDate` for comparison, but format it as 'YYYY-MM-DD' for backend logic
-        const newDateForComparison = currentDate.clone().startOf('day').format('YYYY-MM-DD'); // Format for comparison
+        const newDateForComparison = currentDate.clone().startOf('day').format('YYYY-MM-DD');
 
-        // Check if the date is blocked
-        if (blockedDates.includes(newDateForComparison)) {
+        if (isDateBlocked(blockedDates, currentDate)) {
             message.warning(`The selected date ${newDate} is blocked!`);
-            setAvailableSlots([]); // Clear slots for blocked dates
+            setAvailableSlots([]);
         } else {
-            determineAvailableSlots(newDateForComparison); // Determine available slots if not blocked
+            determineAvailableSlots(newDateForComparison);
         }
     };
-
-
 
     const determineAvailableSlots = (dateStr) => {
         if (!dateStr) return;
 
-        const date = moment(dateStr, 'YYYY-MM-DD'); // Convert string back to moment for day logic
-        const dayOfWeek = date.format('dddd').toLowerCase();
+        const dayOfWeek = getDayOfWeek(dateStr);
         const dayAvailability = weeklyAvailability.find((day) => day.day === dayOfWeek);
 
         if (!dayAvailability || (!dayAvailability.morning && !dayAvailability.evening)) {
@@ -94,60 +102,38 @@ const CalendarSelector = () => {
             return;
         }
 
-        const slots = [];
+        let slots = generateAvailableSlots(dayAvailability);
+        console.log("temp slots", slots)
 
-        const generateSlots = (startTime, endTime) => {
-            const start = moment(startTime, 'HH:mm');
-            const end = moment(endTime, 'HH:mm');
-            while (start.isBefore(end)) {
-                const slotEnd = start.clone().add(1, 'hours');
-                slots.push(`${start.format('HH:mm')} - ${slotEnd.format('HH:mm')}`);
-                start.add(1, 'hours');
-            }
-        };
-
-        if (dayAvailability.morning) {
-            generateSlots(dayAvailability.morning.start, dayAvailability.morning.end);
-        }
-
-        if (dayAvailability.evening) {
-            generateSlots(dayAvailability.evening.start, dayAvailability.evening.end);
-        }
+        // Filter out already booked slots for this room
+        slots = slots.filter(slot => !isSlotBooked(bookedSlotsForRoom, dateStr, slot.split(' -')[0]));
 
         setAvailableSlots(slots);
     };
 
-    // Custom cell rendering to display blocked dates and special indications
     const cellRender = (value) => {
-        const formattedDate = value.format('YYYY-MM-DD'); // Format for comparison
-        const isBlocked = blockedDates.includes(formattedDate);
+        const isBlocked = isDateBlocked(blockedDates, value);
         return isBlocked ? <Badge status="error" text="Booked out" /> : null;
     };
 
-    const disabledDate = (current) => {
-        return current && current < moment().startOf('day');
-    };
-
     const handleSlotClick = (slot) => {
-        window.location.hash = `#/confirm-booking?date=${selectedDate}&slot=${slot}`;
+        window.location.hash = `#/confirm-booking?date=${selectedDate}&slot=${slot}&roomId=${roomId}`;
     };
 
     return (
         <div className="container mx-auto px-4 py-4 max-w-4xl mb-8">
             <h2 className="text-center text-2xl font-bold mb-4">Select a Date to View Available Slots</h2>
 
-            {/* Calendar Component */}
             <Card className="mb-4">
                 <h3 className="text-xl font-semibold mb-4">Pick a Date</h3>
                 <Calendar
-                    disabledDate={disabledDate}
-                    onSelect={handleDateSelect} // Handle date selection from the calendar
-                    cellRender={cellRender} // Use the new `cellRender` for custom cell rendering
-                    fullscreen={true} // Show the full calendar view
+                    disabledDate={disablePastDates}
+                    onSelect={handleDateSelect}
+                    cellRender={cellRender}
+                    fullscreen={true}
                 />
             </Card>
 
-            {/* Display Available Slots or a Message */}
             <Card>
                 <h3 className="text-xl font-semibold mb-4">Available Slots for {selectedDate ? selectedDate : 'Selected Day'}</h3>
 
