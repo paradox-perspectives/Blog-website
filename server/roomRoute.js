@@ -32,4 +32,14 @@ router.put('/:id', async (req, res) => {
     res.json(room);
 });
 
+// Delete a booking
+router.delete('/:id', async (req, res) => {
+    try {
+        await Room.findByIdAndDelete(req.params.id);
+        res.json({ message: 'Room deleted' });
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+});
+
 module.exports = router;

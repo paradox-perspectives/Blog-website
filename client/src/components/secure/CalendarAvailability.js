@@ -93,7 +93,7 @@ const CalendarAvailability = () => {
                     className="mt-4"
                     ghost
                 >
-                    Clear All Checked-Out Dates
+                    Submit dates
                 </Button>
             </Card>
         </div>

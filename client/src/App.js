@@ -33,8 +33,24 @@ import CalendarSelector from "./components/secure/CalendarSelector";
 import ConfirmBooking from "./components/secure/ConfirmBooking";
 import RoomsPage from "./components/secure/RoomsPage";
 import RoomPage from "./components/secure/RoomPage";
+import BookingTable from "./components/secure/BookingTable";
+import AddRoom from "./components/secure/AddRoom";
+import EditRoom from "./components/secure/EditRoom";
+import EditRooms from "./components/secure/EditRooms";
 
 // Non-Secure Layout (with NavBar)
+function NonSecureLayoutNoFooter() {
+    return (
+        <div className="flex flex-col">
+            <NavBar className="z-50 fixed"/>
+            <div className="h-0"></div>
+            <div className="snap-y snap-mandatory overflow-hidden">
+                <Outlet/> {/* Content for each route */}
+            </div>
+        </div>
+    );
+}
+
 function NonSecureLayout() {
     return (
         <>
@@ -81,9 +97,13 @@ function App() {
             <HashRouter>
                 <AuthProvider store={store}>
                     <Routes>
+
+                        <Route element={<NonSecureLayoutNoFooter />}>
+                            <Route path="/" element={<HomePage/>} />
+                        </Route>
+
                         {/* Non-secure routes with NavBar */}
                         <Route element={<NonSecureLayout />}>
-                            <Route path="/" element={<HomePage />} />
                             <Route path="/articles" element={<Articles />} />
                             <Route path="/login" element={<Login />} />
                             <Route path="/articles/:urlId" element={<Article />} />
@@ -113,6 +133,10 @@ function App() {
                             <Route path="/confirm-booking" element={<ConfirmBooking />} />
                             <Route path="/rooms" element={<RoomsPage/>} />
                             <Route path="/rooms/:roomId" element={<RoomPage/>} />
+                            <Route path="/bookings" element={<BookingTable/>} />
+                            <Route path="/add-room" element={<AddRoom />} />
+                            <Route path="/edit-room/:roomId" element={<EditRoom />} />
+                            <Route path="/edit-rooms" element={<EditRooms/>} />
                         </Route>
 
                         {/* 404 Not Found route */}

@@ -6,9 +6,12 @@ const roomSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    image: {
+        type: String
+    },
     description: {
         type: String,
-        required: true
+        default: "none"
     }
 });
 

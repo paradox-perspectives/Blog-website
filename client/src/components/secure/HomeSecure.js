@@ -35,7 +35,7 @@ function HomeSecure() {
             icon: <TeamOutlined />,
             children: [
                 { key: '5', label: 'Add Client', path: 'client/add'},
-                { key: '6', label: 'View', path: 'client'},
+                { key: '6', label: 'View Clients', path: 'client'},
             ],
         },
         {
@@ -43,10 +43,12 @@ function HomeSecure() {
             label: 'Bookings',
             icon: <BookOutlined />,
             children: [
-                { key: '7', label: 'Daily Schedule', path: 'daily-availability'},
+                { key: '7', label: 'Week Schedule', path: 'daily-availability'},
                 { key: '8', label: 'Date Management', path: 'calendar-checkout'},
-                { key: '9', label: 'Book date', path: 'calendar-selector'},
-                { key: '10', label: 'Book rooms', path: 'rooms'}
+                { key: '10', label: 'Book rooms', path: 'rooms'},
+                { key: '11', label: 'Overview Bookings', path: 'bookings'},
+                { key: '12', label: 'Add Room', path: 'add-room'},
+                { key: '13', label: 'Edit Rooms', path: 'edit-rooms'},
             ],
         }
     ];
