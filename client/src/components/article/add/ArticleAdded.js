@@ -11,7 +11,7 @@ const ArticleAdded = () => {
         <Result
             status="success"
             title={title}
-            extra={<Button type="primary" icon={<HomeOutlined />} href={"/#secure"}  ghost>Home</Button>}
+            extra={<Button type="primary" icon={<HomeOutlined />} href={"/secure"}  ghost>Home</Button>}
         />
     )
 }
