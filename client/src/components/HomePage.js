@@ -18,7 +18,7 @@ const HomePage = () => {
             {/* Découvrir Plus */}
             <div
                 ref={discoverRef}
-                className="snap-start h-screen flex justify-center items-center bg-gradient-to-b from-rose-200 via-pink-200 to-red-300 relative"
+                className="snap-start h-screen flex justify-center items-center bg-gradient-to-b from-green-100 via-green-300 to-green-150 relative"
             >
                 <div>
                     {/* Warm Welcome Section */}
@@ -59,7 +59,7 @@ const HomePage = () => {
     }
     <div
         ref={reserveRef}
-        className="snap-start h-screen flex justify-center items-center bg-gradient-to-b from-blue-200 via-indigo-300 to-purple-400 relative"
+        className="snap-start h-screen flex justify-center items-center bg-gradient-to-b from-gray-100 via-blue-400 to-gray-100 relative"
     >
         <UpOutlined
             onClick={() => scrollToSection(discoverRef)}
@@ -70,7 +70,7 @@ const HomePage = () => {
             <p className="md:text-lg text-gray-700">
                 Vivez une détente ultime dans nos salles de sauna privées.
             </p>
-            <Button type="primary" size="large" href="#/rooms">
+            <Button type="primary" size="large" href="#/coming-soon">
                 Réservez Maintenant
             </Button>
         </div>
@@ -84,7 +84,7 @@ const HomePage = () => {
     }
     <div
         ref={contactRef}
-        className="snap-start h-screen flex justify-center items-center bg-gradient-to-b from-amber-200 via-yellow-300 to-orange-400 relative"
+        className="snap-start h-screen flex justify-center items-center bg-gradient-to-b from-indigo-100 via-green-300 to-gray-100 relative"
     >
         <UpOutlined
             onClick={() => scrollToSection(reserveRef)}

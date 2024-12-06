@@ -108,7 +108,7 @@ function App() {
                             <Route path="/login" element={<Login />} />
                             <Route path="/articles/:urlId" element={<Article />} />
                             <Route path="/contact" element={<ContactPage />} />
-                            <Route path="/shop" element={<ComingSoonPage />} />
+                            <Route path="/coming-soon" element={<ComingSoonPage />} />
                             <Route path="/horaires" element={<Timetable />} />
                             <Route path="/tarifs" element={<Prices />} />
                         </Route>
