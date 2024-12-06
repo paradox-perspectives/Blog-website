@@ -1,10 +1,7 @@
 [
-  { "en": "Politics", "nl": "Politiek" },
-  { "en": "Education", "nl": "Onderwijs" },
-  { "en": "Money", "nl": "Geld" },
-  { "en": "Lifestyle", "nl": "Lifestyle" }
+  { "en": "Pinned", "nl": "Pinned" },
+  { "en": "Lifestyle", "nl": "Lifestyle" },
+  { "en":  "Welcome", "nl":  "Welkom"}
 
 ]
-
-
 

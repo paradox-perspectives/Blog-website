@@ -1,6 +1,7 @@
 
 .App {
   text-align: center;
+  background: #FFFFFF;
 }
 
 .App-logo {
@@ -54,3 +55,7 @@
   overflow-y: auto; /* Adds scroll to the content area */
 }
 
+/* Add this to your CSS file */
+.bold-separator {
+  border-bottom: 2px solid black !important;
+}
